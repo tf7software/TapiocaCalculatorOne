@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tapioca OmniCalculator</title>
+    <title>School Safe OmniCalculator</title>
     <link rel="icon" href="favicon.png" type="image/png">
     <style>
         body {
@@ -49,7 +49,7 @@
             margin: 2px;
             border: none;
             border-radius: 5px;
-            background: #007bff;
+            background: #28a745; /* Changed button color to green */
             color: white;
             font-size: 1.2em;
             cursor: pointer;
@@ -98,10 +98,6 @@
             margin-bottom: 20px;
             font-size: 1.2em;
         }
-        .school-safe-link {
-            margin-top: 20px;
-            font-size: 1em;
-        }
     </style>
 </head>
 <body>
@@ -109,7 +105,7 @@
         <div class="shortcut-link">
             <a href="https://www.icloud.com/shortcuts/2feec227181141b9a371394eb133e508">Get The Shortcut For iPhone!</a>
         </div>
-        <div class="title">Tapioca OmniCalculator</div>
+        <div class="title">School Safe OmniCalculator</div>
         <div class="calculator">
             <input type="text" id="expression" placeholder="Enter algebraic expression" onkeydown="handleKeyDown(event)">
             <div>
@@ -136,9 +132,6 @@
                 <button onclick="solve()">Solve</button>
             </div>
             <div id="result"></div>
-        </div>
-        <div class="school-safe-link">
-            <a href="schoolsafe.html">School Safe Version</a>
         </div>
     </div>
 
@@ -170,13 +163,12 @@
             const expression = document.getElementById('expression').value;
             const resultDiv = document.getElementById('result');
             resultDiv.innerHTML = '<span class="thinking">Thinking</span>';
-            const response = await fetch('/solve', {
+            await fetch('/solve', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ prompt: `Solve the following algebraic expression and show all work: ${expression}` })
             });
-            const result = await response.json();
-            resultDiv.innerHTML = result.solution; // Using innerHTML to allow HTML tags
+            resultDiv.innerHTML = 'Solution is hidden for school safe version.';
         }
     </script>
 </body>
