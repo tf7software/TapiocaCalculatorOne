@@ -11,12 +11,15 @@
             background-color: #f0f0f0;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start; /* Changed to flex-start to allow scrolling to top */
             height: 100vh;
             margin: 0;
+            padding: 20px; /* Added padding to ensure some space around the content */
+            overflow-y: auto; /* Added to allow vertical scrolling */
         }
         .container {
             text-align: center;
+            width: 100%;
         }
         .title {
             font-size: 2em;
@@ -28,6 +31,7 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             width: 320px;
+            margin: 0 auto;
             text-align: center;
         }
         .calculator input {
