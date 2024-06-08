@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>School Safe OmniCalculator</title>
+    <title>Tapioca OmniCalculator - School Safe</title>
     <link rel="icon" href="favicon.png" type="image/png">
     <style>
         body {
@@ -11,11 +11,11 @@
             background-color: #f0f0f0;
             display: flex;
             justify-content: center;
-            align-items: flex-start; /* Changed to flex-start to allow scrolling to top */
+            align-items: flex-start;
             height: 100vh;
             margin: 0;
-            padding: 20px; /* Added padding to ensure some space around the content */
-            overflow-y: auto; /* Added to allow vertical scrolling */
+            padding: 20px;
+            overflow-y: auto;
         }
         .container {
             text-align: center;
@@ -49,7 +49,7 @@
             margin: 2px;
             border: none;
             border-radius: 5px;
-            background: #28a745; /* Changed button color to green */
+            background: #28a745; /* Green buttons */
             color: white;
             font-size: 1.2em;
             cursor: pointer;
@@ -94,18 +94,11 @@
                     .5em 0 0 black;
             }
         }
-        .shortcut-link {
-            margin-bottom: 20px;
-            font-size: 1.2em;
-        }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="shortcut-link">
-            <a href="https://www.icloud.com/shortcuts/2feec227181141b9a371394eb133e508">Get The Shortcut For iPhone!</a>
-        </div>
-        <div class="title">School Safe OmniCalculator</div>
+        <div class="title">Tapioca OmniCalculator - School Safe</div>
         <div class="calculator">
             <input type="text" id="expression" placeholder="Enter algebraic expression" onkeydown="handleKeyDown(event)">
             <div>
@@ -163,12 +156,13 @@
             const expression = document.getElementById('expression').value;
             const resultDiv = document.getElementById('result');
             resultDiv.innerHTML = '<span class="thinking">Thinking</span>';
-            await fetch('/solve', {
+            const response = await fetch('/solve', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ prompt: `Solve the following algebraic expression and show all work: ${expression}` })
+                body: JSON.stringify({ prompt: expression, type: 'school-safe' })
             });
-            resultDiv.innerHTML = 'Solution is hidden for school safe version.';
+            const result = await response.json();
+            resultDiv.innerHTML = result.solution; // Using innerHTML to allow HTML tags
         }
     </script>
 </body>
